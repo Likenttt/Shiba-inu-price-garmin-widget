@@ -1,0 +1,19 @@
+<strings>
+    <string id="AppName">Doegcoin</string>
+    <string id="updatedLabel">Updated@</string>
+    <string id="highest24Label">24H Highest:</string>
+    <string id="lowest24Label">24H Lowest:</string>
+    <string id="currencyType">Price Currency Type</string>
+    <string id="currencyTypeCNY">CNY</string>
+    <string id="currencyTypeJPY">JPY</string>
+    <string id="currencyTypeUSD">USD</string>
+    <string id="currencyTypeEUR">EUR</string>
+    <string id="redUpGreenDownTitle">Color Indicating up and down</string>
+    <string id="redUpGreenDown">Red up and green down</string>
+    <string id="redDownGreenUp">Red down and green up</string>
+
+    <!-- <string id="currencyTypeEnglishPound">P</string> -->
+
+
+    
+</strings>
