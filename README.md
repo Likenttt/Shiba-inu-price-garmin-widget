@@ -19,7 +19,7 @@
   <h3 align="center">Shiba Inu</h3>
 
   <p align="center">
-    <img src="https://img.shields.io/badge/CIQ_Store_downloads-786-green"/>
+    <img src="https://img.shields.io/badge/CIQ_Store_downloads-789-green"/>
     <br />
     Shiba Inu price on your wrist!
     <br />
