@@ -13,7 +13,7 @@ class ShibaView extends WatchUi.View {
     hidden var result;
     hidden var fetchResult = false;
     hidden var networkReachable = false;
-    hidden var priceApi = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=$1$&ids=shiba-inu&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h";
+    hidden var priceApi = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=$1$&ids=shib-inu&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h";
     hidden var marketDataDict;
     hidden var priceChangePercentage1hKey = "price_change_percentage_1h_in_currency";
     hidden var priceChangePercentage24hKey = "price_change_percentage_24h_in_currency";
@@ -27,6 +27,7 @@ class ShibaView extends WatchUi.View {
     hidden var highest24hString;
     hidden var lowest24hString;
     hidden var updatedString;
+    hidden var iconMap;
     hidden var options = {
             :method => Communications.HTTP_REQUEST_METHOD_GET,
             :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON,
@@ -40,11 +41,11 @@ class ShibaView extends WatchUi.View {
     function initialize() {
         View.initialize();
         var currencyTypeNumber = Application.getApp().getProperty("currencyType");
-        System.print("currency Type is: " + currencyType);
+        System.println("currency Type is: " + currencyType);
         if(null != currencyTypeNumber){
             currencyType = currencyTypeDict[currencyTypeNumber];
         }
-        System.print("currency Type is: " + currencyType);
+        System.println("currency Type is: " + currencyType);
         var upDownColor = Application.getApp().getProperty("redUpGreenDown");
         if(null != upDownColor && upDownColor == 1){
             redUpGreenDown = false;
@@ -54,11 +55,11 @@ class ShibaView extends WatchUi.View {
         highest24hString = WatchUi.loadResource(Rez.Strings.highest24Label);
         lowest24hString = WatchUi.loadResource(Rez.Strings.lowest24Label);
         updatedString = WatchUi.loadResource(Rez.Strings.updatedLabel);
+        iconMap = WatchUi.loadResource(Rez.Drawables.LauncherIcon);
     }
 
     // Load your resources here
     function onLayout(dc) {
-        setLayout(Rez.Layouts.MainLayout(dc));
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -126,10 +127,8 @@ class ShibaView extends WatchUi.View {
     function onUpdate(dc) {
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
-        View.onUpdate(dc);
+        dc.drawBitmap(dc.getWidth()/2 - iconMap.getWidth()/2, dc.getHeight()/8, iconMap);
         if(fetchResult){       
-            
-               
             //current price
             var priceStr = marketDataDict[currentPriceKey];
             //0.00004959
@@ -157,13 +156,13 @@ class ShibaView extends WatchUi.View {
             var xtinyFontHeight = Graphics.getFontHeight(Graphics.FONT_SYSTEM_XTINY);
             var xtinyFontDescent = Graphics.getFontDescent(Graphics.FONT_SYSTEM_XTINY);
             var priceStrDescent = Graphics.getFontDescent(Graphics.FONT_NUMBER_THAI_HOT);
-            System.print("priceStrDescent is:"+priceStrDescent);
+            System.println("priceStrDescent is:"+priceStrDescent);
 
 
             var changeRate1h = (marketDataDict[priceChangePercentage1hKey]).toFloat();
             var changeRate24h = (marketDataDict[priceChangePercentage24hKey]).toFloat();
-            System.print("changeRate1h is:"+changeRate1h);
-            System.print("changeRate24h is:"+changeRate24h);
+            System.println("changeRate1h is:"+changeRate1h);
+            System.println("changeRate24h is:"+changeRate24h);
 
             var oneHStrWidth = dc.getTextWidthInPixels("1H(%)",Graphics.FONT_SYSTEM_XTINY);
 
@@ -191,7 +190,8 @@ class ShibaView extends WatchUi.View {
                 changeRate24hColor = ChineseUpColorDict[changeRate24h<=0];
             }
 
-            var changeRate1hStr = (changeRate1h>=0?"+":"-")+changeRate1h.format("%0.2f");
+            // if the pirce is decreasing there will be a - with the source data
+            var changeRate1hStr = (changeRate1h>=0?"+":"")+changeRate1h.format("%0.2f");
             var changeRate1hStrFontWidth = dc.getTextWidthInPixels(changeRate1hStr,Graphics.FONT_SYSTEM_XTINY);
  
             dc.setColor(changeRate1hColor,Graphics.COLOR_TRANSPARENT);
@@ -201,7 +201,7 @@ class ShibaView extends WatchUi.View {
                         changeRate1hStr,
                         Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 
-            var changeRate24hStr = (changeRate24h>=0?"+":"-")+changeRate24h.format("%0.2f");
+            var changeRate24hStr = (changeRate24h>=0?"+":"")+changeRate24h.format("%0.2f");
             var changeRate24hStrFontWidth = dc.getTextWidthInPixels(changeRate24hStr,Graphics.FONT_SYSTEM_XTINY);
             dc.setColor(changeRate24hColor,Graphics.COLOR_TRANSPARENT);
             dc.drawText(dc.getWidth()/2 + priceStrWidth/2 + changeRate24hStrFontWidth/2,
@@ -247,9 +247,9 @@ class ShibaView extends WatchUi.View {
             //update time
             dc.setColor(Graphics.COLOR_WHITE,Graphics.COLOR_TRANSPARENT);
             var lastUpdatedTime = marketDataDict[lastUpdatedTimeKey];
-            //System.println("lastUpdatedTime is:"+lastUpdatedTime);
+            //System.printlnln("lastUpdatedTime is:"+lastUpdatedTime);
             var moment = parseISODate(lastUpdatedTime);
-            //System.println("moment time is:"+moment.value());
+            //System.printlnln("moment time is:"+moment.value());
             var now = Time.now().value();
 			var lastUpdate = Gregorian.info(moment, Time.FORMAT_SHORT);
 			var lastUpdateStr = Lang.format("$1$:$2$:$3$ (-$4$s)", [
@@ -286,7 +286,7 @@ class ShibaView extends WatchUi.View {
     }
 
     function fetchPrice(){
-        System.print("-------Getting Price------");
+        System.println("-------Getting Price------");
         Communications.makeWebRequest(
                 Lang.format(priceApi, [currencyType]),
                 {},
@@ -298,16 +298,17 @@ class ShibaView extends WatchUi.View {
     
 
     function onReceive(responseCode, data) {
-        System.print("-------onReceive------");
-        System.print(responseCode);
-        System.print(data);
+        System.println("-------onReceive------");
+        System.println("responseCode is:"+responseCode);
+        System.println(data);
         if (responseCode == 200) {
             fetchResult = true;
-            System.print(data);
+            System.println(data);
             marketDataDict = data[0];
             WatchUi.requestUpdate();
         } else {
             fetchResult = false;
+            WatchUi.requestUpdate();
         }
     }
 
