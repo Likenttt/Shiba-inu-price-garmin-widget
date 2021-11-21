@@ -4,7 +4,7 @@ using Toybox.Graphics;
 using Toybox.Time;
 using Toybox.Time.Gregorian;
 
-class DogecoinView extends WatchUi.View {
+class ShibaView extends WatchUi.View {
 
     hidden var priceLabel;
     hidden var currencyType = "usd";
@@ -13,7 +13,7 @@ class DogecoinView extends WatchUi.View {
     hidden var result;
     hidden var fetchResult = false;
     hidden var networkReachable = false;
-    hidden var priceApi = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=$1$&ids=dogecoin&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h";
+    hidden var priceApi = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=$1$&ids=shiba-inu&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h";
     hidden var marketDataDict;
     hidden var priceChangePercentage1hKey = "price_change_percentage_1h_in_currency";
     hidden var priceChangePercentage24hKey = "price_change_percentage_24h_in_currency";
@@ -127,9 +127,27 @@ class DogecoinView extends WatchUi.View {
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
         View.onUpdate(dc);
-        if(fetchResult){            
+        if(fetchResult){       
+            
+               
             //current price
-            var priceStr = (marketDataDict[currentPriceKey]).format("%0.2f");
+            var priceStr = marketDataDict[currentPriceKey];
+            //0.00004959
+            // split two parts
+            var priceCharArray = priceStr.toCharArray();
+            var i = 0;
+            var priceStrSize = priceStr.length();
+            for(;i <= priceStrSize;i++){
+                if(priceCharArray[i] != '0' && priceCharArray[i] != '.'){
+                    break;
+                }
+            }
+            var pricePrefixStr = priceStr.substring(0, i);
+            priceStr = priceStr.substring(i, priceStrSize);
+            if(priceStr.length() > 4){
+                priceStr = priceStr.substring(0, 4);
+            }
+
             dc.drawText(dc.getWidth()/2,dc.getHeight()/2,
                         Graphics.FONT_NUMBER_THAI_HOT,
                         priceStr,
@@ -173,7 +191,7 @@ class DogecoinView extends WatchUi.View {
                 changeRate24hColor = ChineseUpColorDict[changeRate24h<=0];
             }
 
-            var changeRate1hStr = (changeRate1h>=0?"+":"")+changeRate1h.format("%0.2f");
+            var changeRate1hStr = (changeRate1h>=0?"+":"-")+changeRate1h.format("%0.2f");
             var changeRate1hStrFontWidth = dc.getTextWidthInPixels(changeRate1hStr,Graphics.FONT_SYSTEM_XTINY);
  
             dc.setColor(changeRate1hColor,Graphics.COLOR_TRANSPARENT);
@@ -183,7 +201,7 @@ class DogecoinView extends WatchUi.View {
                         changeRate1hStr,
                         Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 
-            var changeRate24hStr = (changeRate24h>=0?"+":"")+changeRate24h.format("%0.2f");
+            var changeRate24hStr = (changeRate24h>=0?"+":"-")+changeRate24h.format("%0.2f");
             var changeRate24hStrFontWidth = dc.getTextWidthInPixels(changeRate24hStr,Graphics.FONT_SYSTEM_XTINY);
             dc.setColor(changeRate24hColor,Graphics.COLOR_TRANSPARENT);
             dc.drawText(dc.getWidth()/2 + priceStrWidth/2 + changeRate24hStrFontWidth/2,
@@ -197,11 +215,19 @@ class DogecoinView extends WatchUi.View {
             var currencyTypeStrWidth = dc.getTextWidthInPixels(currencyTypeStr,Graphics.FONT_SYSTEM_XTINY);
             dc.setColor(Graphics.COLOR_WHITE,Graphics.COLOR_TRANSPARENT);
             dc.drawText(dc.getWidth()/2 - priceStrWidth/2 - currencyTypeStrWidth/2 - 5,
-                        dc.getHeight()/2 + priceFontHeight/2 - priceStrDescent - xtinyFontHeight/2 + 5,
+                        dc.getHeight()/2,
                         Graphics.FONT_SYSTEM_XTINY,
                         currencyTypeStr,
                         Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-            
+                        
+            //price prefix 0.0000
+            dc.setColor(Graphics.COLOR_WHITE,Graphics.COLOR_TRANSPARENT);
+            dc.drawText(dc.getWidth() - 5,
+                        dc.getHeight()/2,
+                        Graphics.FONT_SYSTEM_XTINY,
+                        pricePrefixStr,
+                        Graphics.TEXT_JUSTIFY_RIGHT|Graphics.TEXT_JUSTIFY_VCENTER);
+  
             //24 high 
             dc.setColor(Graphics.COLOR_WHITE,Graphics.COLOR_TRANSPARENT);
             dc.drawText(dc.getWidth()/2,
@@ -260,6 +286,7 @@ class DogecoinView extends WatchUi.View {
     }
 
     function fetchPrice(){
+        System.print("-------Getting Price------");
         Communications.makeWebRequest(
                 Lang.format(priceApi, [currencyType]),
                 {},

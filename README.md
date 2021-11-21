@@ -3,7 +3,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![Get Garmin Downloads](https://github.com/Likenttt/DogecoinToTheMoon/actions/workflows/garmin_download_count.yml/badge.svg?branch=main)](https://github.com/Likenttt/DogecoinToTheMoon/actions/workflows/garmin_download_count.yml)
+[![Get Garmin Downloads](https://github.com/Likenttt/Shiba-inu-price-garmin-widget/actions/workflows/garmin_download_count.yml/badge.svg?branch=main)](https://github.com/Likenttt/Shiba-inu-price-garmin-widget/actions/workflows/garmin_download_count.yml)
 
 
 
@@ -11,23 +11,23 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <a href="https://github.com/Likenttt/DogecoinToTheMoon">
+    <a href="https://github.com/Likenttt/Shiba-inu-price-garmin-widget">
     <img src="screenshot/doge.png" alt="Logo" width="80" height="80">
     </a>
     
 
-  <h3 align="center">Dogecoin to the moon</h3>
+  <h3 align="center">Shiba Inu</h3>
 
   <p align="center">
     <img src="https://img.shields.io/badge/CIQ_Store_downloads-786-green"/>
     <br />
-    Dogecoin price on your wrist!
+    Shiba Inu price on your wrist!
     <br />
     <br />
     ·
-    <a href="https://github.com/Likenttt/DogecoinToTheMoon/issues">Report Bug</a>
+    <a href="https://github.com/Likenttt/Shiba-inu-price-garmin-widget/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Likenttt/DogecoinToTheMoon/issues">Request Feature</a>
+    <a href="https://github.com/Likenttt/Shiba-inu-price-garmin-widget/issues">Request Feature</a>
     ·
     <a href="https://apps.garmin.com/en-US/apps/c6168ee2-aa5b-42d3-964d-7a891fb8fc12">Connect IQ store</a>
   </p>
@@ -57,7 +57,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Demo][product-screenshot]](https://github.com/Likenttt/DogecoinToTheMoon)
+[![Demo][product-screenshot]](https://github.com/Likenttt/Shiba-inu-price-garmin-widget)
 
 This is a widget for Garmin watch.
 
@@ -67,7 +67,7 @@ This is a widget for Garmin watch.
 
 ## Roadmap
 
-See the [open issues](https://github.com/Likenttt/DogecoinToTheMoon/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/Likenttt/Shiba-inu-price-garmin-widget/issues) for a list of proposed features (and known issues).
 
 
 <!-- CONTRIBUTING -->
@@ -78,8 +78,6 @@ Contributions are what make the open source community such an amazing place to b
 ## Projects
 
 Here are projects base on this widgets. Thanks for your composition and share.
-
-- [LtcPriceTracer](https://github.com/ben-29/LtcPriceTracer)
 
 <!-- LICENSE -->
 ## License
@@ -93,7 +91,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Chuanyi - [@KentLee](https://twitter.com/KentLee01607301) - chuanyi@88.com
 
-Project Link: [Dogecoin](https://github.com/Likenttt/DogecoinToTheMoon)
+Project Link: [Dogecoin](https://github.com/Likenttt/Shiba-inu-price-garmin-widget)
 
 ## Reference
 
@@ -110,16 +108,13 @@ Thanks JetBrains for the free open source license
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/Likenttt/dogecoin-is-flying-to-the-moon-with-dogefather-elon-musk.svg?style=for-the-badge
-[contributors-url]: https://github.com/Likenttt/dogecoin-is-flying-to-the-moon-with-dogefather-elon-musk/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Likenttt/dogecoin-is-flying-to-the-moon-with-dogefather-elon-musk.svg?style=for-the-badge
-[forks-url]: https://github.com/Likenttt/dogecoin-is-flying-to-the-moon-with-dogefather-elon-musk/network/members
-[stars-shield]: https://img.shields.io/github/stars/Likenttt/dogecoin-is-flying-to-the-moon-with-dogefather-elon-musk.svg?style=for-the-badge
-[stars-url]: https://github.com/Likenttt/dogecoin-is-flying-to-the-moon-with-dogefather-elon-musk/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Likenttt/dogecoin-is-flying-to-the-moon-with-dogefather-elon-musk.svg?style=for-the-badge
-[issues-url]: https://github.com/Likenttt/dogecoin-is-flying-to-the-moon-with-dogefather-elon-musk/issues
-[license-shield]: https://img.shields.io/github/license/Likenttt/dogecoin-is-flying-to-the-moon-with-dogefather-elon-musk.svg?style=for-the-badge
-[license-url]: https://github.com/Likenttt/dogecoin-is-flying-to-the-moon-with-dogefather-elon-musk/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[contributors-shield]: https://img.shields.io/github/contributors/Likenttt/Shiba-inu-price-garmin-widget.svg?style=for-the-badge
+[contributors-url]: https://github.com/Likenttt/Shiba-inu-price-garmin-widget/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Likenttt/Shiba-inu-price-garmin-widget.svg?style=for-the-badge
+[forks-url]: https://github.com/Likenttt/Shiba-inu-price-garmin-widget/network/members
+[stars-shield]: https://img.shields.io/github/stars/Likenttt/Shiba-inu-price-garmin-widget.svg?style=for-the-badge
+[stars-url]: https://github.com/Likenttt/Shiba-inu-price-garmin-widget/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Likenttt/Shiba-inu-price-garmin-widget.svg?style=for-the-badge
+[issues-url]: https://github.com/Likenttt/Shiba-inu-price-garmin-widget/issues
+[license-shield]: https://img.shields.io/github/license/Likenttt/Shiba-inu-price-garmin-widget.svg?style=for-the-badge
 [product-screenshot]: screenshot/dogecoin_break0_4_usd.png
